@@ -1,0 +1,1166 @@
+[
+  {
+    "code": "OD",
+    "aliases": [
+      "QD",
+      "od",
+      "o.d.",
+      "q.d.",
+      "once daily",
+      "daily"
+    ],
+    "locale_preferred": {
+      "en-GB": "OD",
+      "en-US": "QD"
+    },
+    "display": {
+      "en-GB": "Once daily",
+      "en-US": "Once daily"
+    },
+    "category": "regular",
+    "frequency": 1,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 24,
+    "default_times": [
+      "08:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "omni die",
+    "fhir_code": "QD",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 1,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (QD) + NHS convention (OD)"
+  },
+  {
+    "code": "BD",
+    "aliases": [
+      "BID",
+      "bd",
+      "b.d.",
+      "b.i.d.",
+      "twice daily"
+    ],
+    "locale_preferred": {
+      "en-GB": "BD",
+      "en-US": "BID"
+    },
+    "display": {
+      "en-GB": "Twice daily",
+      "en-US": "Twice daily"
+    },
+    "category": "regular",
+    "frequency": 2,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 12,
+    "default_times": [
+      "08:00",
+      "20:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "bis in die",
+    "fhir_code": "BID",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 2,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (BID) + NHS convention (BD)"
+  },
+  {
+    "code": "TDS",
+    "aliases": [
+      "TID",
+      "tds",
+      "t.d.s.",
+      "t.i.d.",
+      "three times daily"
+    ],
+    "locale_preferred": {
+      "en-GB": "TDS",
+      "en-US": "TID"
+    },
+    "display": {
+      "en-GB": "Three times daily",
+      "en-US": "Three times daily"
+    },
+    "category": "regular",
+    "frequency": 3,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 8,
+    "default_times": [
+      "08:00",
+      "14:00",
+      "20:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "ter die sumendus",
+    "fhir_code": "TID",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 3,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (TID) + NHS convention (TDS)"
+  },
+  {
+    "code": "QDS",
+    "aliases": [
+      "QID",
+      "qds",
+      "q.d.s.",
+      "q.i.d.",
+      "four times daily"
+    ],
+    "locale_preferred": {
+      "en-GB": "QDS",
+      "en-US": "QID"
+    },
+    "display": {
+      "en-GB": "Four times daily",
+      "en-US": "Four times daily"
+    },
+    "category": "regular",
+    "frequency": 4,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 6,
+    "default_times": [
+      "06:00",
+      "12:00",
+      "18:00",
+      "22:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "quater die sumendus",
+    "fhir_code": "QID",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 4,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (QID) + NHS convention (QDS)"
+  },
+  {
+    "code": "5X_DAILY",
+    "aliases": [
+      "5x daily",
+      "five times daily"
+    ],
+    "locale_preferred": {
+      "en-GB": "5x daily",
+      "en-US": "5x daily"
+    },
+    "display": {
+      "en-GB": "Five times daily",
+      "en-US": "Five times daily"
+    },
+    "category": "regular",
+    "frequency": 5,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 4.8,
+    "default_times": [
+      "06:00",
+      "10:00",
+      "14:00",
+      "18:00",
+      "22:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 5,
+    "source_tier": "S3",
+    "source_detail": "Clinical practice"
+  },
+  {
+    "code": "Q1H",
+    "aliases": [
+      "every 1 hour",
+      "hourly",
+      "q1h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q1H",
+      "en-US": "Q1H"
+    },
+    "display": {
+      "en-GB": "Every 1 hour",
+      "en-US": "Every 1 hour"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 1,
+    "period_unit": "h",
+    "interval_hours": 1,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "Q1H",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 6,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (Q1H) + NHS App (q.1.h.)"
+  },
+  {
+    "code": "Q2H",
+    "aliases": [
+      "every 2 hours",
+      "q2h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q2H",
+      "en-US": "Q2H"
+    },
+    "display": {
+      "en-GB": "Every 2 hours",
+      "en-US": "Every 2 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 2,
+    "period_unit": "h",
+    "interval_hours": 2,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 7,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (Q2H) + NHS App (q.2.h.)"
+  },
+  {
+    "code": "Q4H",
+    "aliases": [
+      "every 4 hours",
+      "q4h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q4H",
+      "en-US": "Q4H"
+    },
+    "display": {
+      "en-GB": "Every 4 hours",
+      "en-US": "Every 4 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 4,
+    "period_unit": "h",
+    "interval_hours": 4,
+    "default_times": [
+      "06:00",
+      "10:00",
+      "14:00",
+      "18:00",
+      "22:00",
+      "02:00"
+    ],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "Q4H",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 8,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (Q4H) + NHS App (q.4.h.)"
+  },
+  {
+    "code": "Q6H",
+    "aliases": [
+      "every 6 hours",
+      "q6h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q6H",
+      "en-US": "Q6H"
+    },
+    "display": {
+      "en-GB": "Every 6 hours",
+      "en-US": "Every 6 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 6,
+    "period_unit": "h",
+    "interval_hours": 6,
+    "default_times": [
+      "06:00",
+      "12:00",
+      "18:00",
+      "00:00"
+    ],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "Q6H",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 9,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (Q6H) + NHS App (q.6.h.)"
+  },
+  {
+    "code": "Q8H",
+    "aliases": [
+      "every 8 hours",
+      "q8h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q8H",
+      "en-US": "Q8H"
+    },
+    "display": {
+      "en-GB": "Every 8 hours",
+      "en-US": "Every 8 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 8,
+    "period_unit": "h",
+    "interval_hours": 8,
+    "default_times": [
+      "06:00",
+      "14:00",
+      "22:00"
+    ],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 10,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (Q8H) + NHS App (q.8.h.)"
+  },
+  {
+    "code": "Q12H",
+    "aliases": [
+      "every 12 hours",
+      "q12h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q12H",
+      "en-US": "Q12H"
+    },
+    "display": {
+      "en-GB": "Every 12 hours",
+      "en-US": "Every 12 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 12,
+    "period_unit": "h",
+    "interval_hours": 12,
+    "default_times": [
+      "08:00",
+      "20:00"
+    ],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 11,
+    "source_tier": "S3",
+    "source_detail": "Derived from Q-interval pattern"
+  },
+  {
+    "code": "Q24H",
+    "aliases": [
+      "every 24 hours",
+      "q24h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q24H",
+      "en-US": "Q24H"
+    },
+    "display": {
+      "en-GB": "Every 24 hours",
+      "en-US": "Every 24 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 24,
+    "period_unit": "h",
+    "interval_hours": 24,
+    "default_times": [
+      "08:00"
+    ],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 12,
+    "source_tier": "S3",
+    "source_detail": "Derived from Q-interval pattern"
+  },
+  {
+    "code": "Q36H",
+    "aliases": [
+      "every 36 hours",
+      "q36h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q36H",
+      "en-US": "Q36H"
+    },
+    "display": {
+      "en-GB": "Every 36 hours",
+      "en-US": "Every 36 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 36,
+    "period_unit": "h",
+    "interval_hours": 36,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 13,
+    "source_tier": "S3",
+    "source_detail": "Derived from Q-interval pattern"
+  },
+  {
+    "code": "Q48H",
+    "aliases": [
+      "every 48 hours",
+      "alternate days",
+      "q48h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q48H",
+      "en-US": "Q48H"
+    },
+    "display": {
+      "en-GB": "Every 48 hours",
+      "en-US": "Every 48 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 48,
+    "period_unit": "h",
+    "interval_hours": 48,
+    "default_times": [
+      "08:00"
+    ],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 14,
+    "source_tier": "S3",
+    "source_detail": "Derived from Q-interval pattern"
+  },
+  {
+    "code": "Q72H",
+    "aliases": [
+      "every 72 hours",
+      "q72h"
+    ],
+    "locale_preferred": {
+      "en-GB": "Q72H",
+      "en-US": "Q72H"
+    },
+    "display": {
+      "en-GB": "Every 72 hours",
+      "en-US": "Every 72 hours"
+    },
+    "category": "interval",
+    "frequency": 1,
+    "period": 72,
+    "period_unit": "h",
+    "interval_hours": 72,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 15,
+    "source_tier": "S3",
+    "source_detail": "Derived from Q-interval pattern"
+  },
+  {
+    "code": "MANE",
+    "aliases": [
+      "mane",
+      "morning",
+      "AM",
+      "in the morning"
+    ],
+    "locale_preferred": {
+      "en-GB": "MANE",
+      "en-US": "MANE"
+    },
+    "display": {
+      "en-GB": "In the morning",
+      "en-US": "In the morning"
+    },
+    "category": "time_of_day",
+    "frequency": 1,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 24,
+    "default_times": [
+      "08:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "mane",
+    "fhir_code": "AM",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 16,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (AM) + NHS convention (mane)"
+  },
+  {
+    "code": "NOCTE",
+    "aliases": [
+      "nocte",
+      "ON",
+      "at night",
+      "at bedtime",
+      "HS"
+    ],
+    "locale_preferred": {
+      "en-GB": "NOCTE",
+      "en-US": "NOCTE"
+    },
+    "display": {
+      "en-GB": "At night",
+      "en-US": "At night"
+    },
+    "category": "time_of_day",
+    "frequency": 1,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 24,
+    "default_times": [
+      "22:00"
+    ],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "nocte",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 17,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (BED) + NHS App (nocte)"
+  },
+  {
+    "code": "MIDI",
+    "aliases": [
+      "midday",
+      "noon",
+      "lunchtime"
+    ],
+    "locale_preferred": {
+      "en-GB": "MIDI",
+      "en-US": "MIDI"
+    },
+    "display": {
+      "en-GB": "At midday",
+      "en-US": "At midday"
+    },
+    "category": "time_of_day",
+    "frequency": 1,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 24,
+    "default_times": [
+      "12:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 18,
+    "source_tier": "S3",
+    "source_detail": "Clinical practice"
+  },
+  {
+    "code": "AM_PM",
+    "aliases": [
+      "morning and evening",
+      "AM+PM"
+    ],
+    "locale_preferred": {
+      "en-GB": "AM+PM",
+      "en-US": "AM+PM"
+    },
+    "display": {
+      "en-GB": "Morning and evening",
+      "en-US": "Morning and evening"
+    },
+    "category": "time_of_day",
+    "frequency": 2,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 12,
+    "default_times": [
+      "08:00",
+      "20:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 19,
+    "source_tier": "S3",
+    "source_detail": "Clinical practice"
+  },
+  {
+    "code": "AC",
+    "aliases": [
+      "a.c.",
+      "before food",
+      "before meals",
+      "ante cibum"
+    ],
+    "locale_preferred": {
+      "en-GB": "AC",
+      "en-US": "AC"
+    },
+    "display": {
+      "en-GB": "Before meals",
+      "en-US": "Before meals"
+    },
+    "category": "meal_relative",
+    "frequency": 0,
+    "period": 0,
+    "period_unit": "d",
+    "interval_hours": 0,
+    "default_times": [],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "before",
+    "latin": "ante cibum",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 20,
+    "source_tier": "S2",
+    "source_detail": "NHS App (a.c.) + FHIR EventTiming (AC)"
+  },
+  {
+    "code": "PC",
+    "aliases": [
+      "p.c.",
+      "after food",
+      "after meals",
+      "post cibum"
+    ],
+    "locale_preferred": {
+      "en-GB": "PC",
+      "en-US": "PC"
+    },
+    "display": {
+      "en-GB": "After meals",
+      "en-US": "After meals"
+    },
+    "category": "meal_relative",
+    "frequency": 0,
+    "period": 0,
+    "period_unit": "d",
+    "interval_hours": 0,
+    "default_times": [],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "after",
+    "latin": "post cibum",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 21,
+    "source_tier": "S2",
+    "source_detail": "NHS App (p.c.) + FHIR EventTiming (PC)"
+  },
+  {
+    "code": "CC",
+    "aliases": [
+      "c.c.",
+      "with food",
+      "with meals",
+      "cum cibo"
+    ],
+    "locale_preferred": {
+      "en-GB": "CC",
+      "en-US": "CC"
+    },
+    "display": {
+      "en-GB": "With meals",
+      "en-US": "With meals"
+    },
+    "category": "meal_relative",
+    "frequency": 0,
+    "period": 0,
+    "period_unit": "d",
+    "interval_hours": 0,
+    "default_times": [],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "with",
+    "latin": "cum cibo",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 22,
+    "source_tier": "S3",
+    "source_detail": "Latin prescribing tradition + FHIR EventTiming (C)"
+  },
+  {
+    "code": "AC_HS",
+    "aliases": [
+      "before meals and at bedtime",
+      "AC+HS"
+    ],
+    "locale_preferred": {
+      "en-GB": "AC+HS",
+      "en-US": "AC+HS"
+    },
+    "display": {
+      "en-GB": "Before meals and at bedtime",
+      "en-US": "Before meals and at bedtime"
+    },
+    "category": "meal_relative",
+    "frequency": 4,
+    "period": 1,
+    "period_unit": "d",
+    "interval_hours": 0,
+    "default_times": [
+      "07:30",
+      "11:30",
+      "17:30",
+      "22:00"
+    ],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "before",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 23,
+    "source_tier": "S3",
+    "source_detail": "Common prescribing pattern (e.g. sucralfate)"
+  },
+  {
+    "code": "PRN",
+    "aliases": [
+      "p.r.n.",
+      "as needed",
+      "as required",
+      "when required",
+      "pro re nata"
+    ],
+    "locale_preferred": {
+      "en-GB": "PRN",
+      "en-US": "PRN"
+    },
+    "display": {
+      "en-GB": "As needed",
+      "en-US": "As needed"
+    },
+    "category": "prn",
+    "frequency": 0,
+    "period": 0,
+    "period_unit": "d",
+    "interval_hours": 0,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": true,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "pro re nata",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 24,
+    "source_tier": "S2",
+    "source_detail": "NHS App (p.r.n.)"
+  },
+  {
+    "code": "PRN_Q4H",
+    "aliases": [
+      "PRN every 4 hours",
+      "as needed max every 4 hours",
+      "p.r.n. q4h"
+    ],
+    "locale_preferred": {
+      "en-GB": "PRN Q4H",
+      "en-US": "PRN Q4H"
+    },
+    "display": {
+      "en-GB": "As needed, max every 4 hours",
+      "en-US": "As needed, max every 4 hours"
+    },
+    "category": "prn",
+    "frequency": 1,
+    "period": 4,
+    "period_unit": "h",
+    "interval_hours": 4,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": true,
+    "max_per_day": 6,
+    "min_interval": 4,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 25,
+    "source_tier": "S3",
+    "source_detail": "Common PRN constraint pattern"
+  },
+  {
+    "code": "PRN_Q6H",
+    "aliases": [
+      "PRN every 6 hours",
+      "as needed max every 6 hours",
+      "p.r.n. q6h"
+    ],
+    "locale_preferred": {
+      "en-GB": "PRN Q6H",
+      "en-US": "PRN Q6H"
+    },
+    "display": {
+      "en-GB": "As needed, max every 6 hours",
+      "en-US": "As needed, max every 6 hours"
+    },
+    "category": "prn",
+    "frequency": 1,
+    "period": 6,
+    "period_unit": "h",
+    "interval_hours": 6,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": true,
+    "max_per_day": 4,
+    "min_interval": 6,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 26,
+    "source_tier": "S3",
+    "source_detail": "Common PRN constraint pattern"
+  },
+  {
+    "code": "SOS",
+    "aliases": [
+      "s.o.s.",
+      "if needed",
+      "si opus sit"
+    ],
+    "locale_preferred": {
+      "en-GB": "SOS",
+      "en-US": "SOS"
+    },
+    "display": {
+      "en-GB": "If needed (single use)",
+      "en-US": "If needed (single use)"
+    },
+    "category": "prn",
+    "frequency": 0,
+    "period": 0,
+    "period_unit": "d",
+    "interval_hours": 0,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": true,
+    "max_per_day": 1,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "si opus sit",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 27,
+    "source_tier": "S3",
+    "source_detail": "Latin prescribing tradition (si opus sit)"
+  },
+  {
+    "code": "STAT",
+    "aliases": [
+      "stat",
+      "immediately",
+      "now",
+      "statim"
+    ],
+    "locale_preferred": {
+      "en-GB": "STAT",
+      "en-US": "STAT"
+    },
+    "display": {
+      "en-GB": "Immediately",
+      "en-US": "Immediately"
+    },
+    "category": "one_off",
+    "frequency": 1,
+    "period": 0,
+    "period_unit": "d",
+    "interval_hours": 0,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 1,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "statim",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 28,
+    "source_tier": "S2",
+    "source_detail": "NHS App (stat.)"
+  },
+  {
+    "code": "ONCE",
+    "aliases": [
+      "single dose",
+      "one-off",
+      "×1",
+      "x1"
+    ],
+    "locale_preferred": {
+      "en-GB": "ONCE",
+      "en-US": "ONCE"
+    },
+    "display": {
+      "en-GB": "Single dose",
+      "en-US": "Single dose"
+    },
+    "category": "one_off",
+    "frequency": 1,
+    "period": 0,
+    "period_unit": "d",
+    "interval_hours": 0,
+    "default_times": [],
+    "waking_only": false,
+    "as_needed": false,
+    "max_per_day": 1,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 29,
+    "source_tier": "S3",
+    "source_detail": "Clinical practice"
+  },
+  {
+    "code": "QOD",
+    "aliases": [
+      "every other day",
+      "alternate days",
+      "on alternate days",
+      "qod"
+    ],
+    "locale_preferred": {
+      "en-GB": "QOD",
+      "en-US": "QOD"
+    },
+    "display": {
+      "en-GB": "Every other day",
+      "en-US": "Every other day"
+    },
+    "category": "extended",
+    "frequency": 1,
+    "period": 2,
+    "period_unit": "d",
+    "interval_hours": 48,
+    "default_times": [
+      "08:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "QOD",
+    "fhir_system": "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation",
+    "sort_order": 30,
+    "source_tier": "S1+S2",
+    "source_detail": "HL7 GTS (QOD) + NHS App (q.o.d.)"
+  },
+  {
+    "code": "WEEKLY",
+    "aliases": [
+      "once a week",
+      "weekly",
+      "every week",
+      "Q1W"
+    ],
+    "locale_preferred": {
+      "en-GB": "WEEKLY",
+      "en-US": "WEEKLY"
+    },
+    "display": {
+      "en-GB": "Once weekly",
+      "en-US": "Once weekly"
+    },
+    "category": "extended",
+    "frequency": 1,
+    "period": 1,
+    "period_unit": "wk",
+    "interval_hours": 168,
+    "default_times": [
+      "08:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 31,
+    "source_tier": "S1",
+    "source_detail": "HL7 GTS (WK)"
+  },
+  {
+    "code": "BIWEEKLY",
+    "aliases": [
+      "every 2 weeks",
+      "fortnightly",
+      "Q2W"
+    ],
+    "locale_preferred": {
+      "en-GB": "BIWEEKLY",
+      "en-US": "BIWEEKLY"
+    },
+    "display": {
+      "en-GB": "Every 2 weeks",
+      "en-US": "Every 2 weeks"
+    },
+    "category": "extended",
+    "frequency": 1,
+    "period": 2,
+    "period_unit": "wk",
+    "interval_hours": 336,
+    "default_times": [
+      "08:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 32,
+    "source_tier": "S3",
+    "source_detail": "Clinical practice"
+  },
+  {
+    "code": "MONTHLY",
+    "aliases": [
+      "once a month",
+      "monthly",
+      "Q1M"
+    ],
+    "locale_preferred": {
+      "en-GB": "MONTHLY",
+      "en-US": "MONTHLY"
+    },
+    "display": {
+      "en-GB": "Once monthly",
+      "en-US": "Once monthly"
+    },
+    "category": "extended",
+    "frequency": 1,
+    "period": 1,
+    "period_unit": "mo",
+    "interval_hours": 720,
+    "default_times": [
+      "08:00"
+    ],
+    "waking_only": true,
+    "as_needed": false,
+    "max_per_day": 0,
+    "min_interval": null,
+    "meal_relation": "none",
+    "latin": "",
+    "fhir_code": "",
+    "fhir_system": "",
+    "sort_order": 33,
+    "source_tier": "S1",
+    "source_detail": "HL7 GTS (MO)"
+  }
+]
