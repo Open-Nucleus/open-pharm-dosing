@@ -4,7 +4,7 @@ A zero-dependency library for structured medication dosing frequency encoding, p
 
 Maps clinical shorthand (BD, TDS, PRN, STAT, etc.) to structured timing data and FHIR resources, with locale support for UK and US conventions.
 
-**Author:** Dr Akanimoh Osutuk — [FibrinLab](https://github.com/FibrinLab)
+**Author:** Akanimoh Osutuk — [FibrinLab](https://github.com/FibrinLab)
 **Licence:** Apache 2.0
 
 ---
