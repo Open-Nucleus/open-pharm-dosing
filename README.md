@@ -4,7 +4,7 @@ A zero-dependency library for structured medication dosing frequency encoding, p
 
 Maps clinical shorthand (BD, TDS, PRN, STAT, etc.) to structured timing data and FHIR resources, with locale support for UK and US conventions.
 
-**Author:** Akanimoh Osutuk — [FibrinLab](https://github.com/FibrinLab)
+**Author:** Akanimoh Osutuk — [Open Nucleus](https://github.com/Open-Nucleus)
 **Licence:** Apache 2.0
 
 ---
@@ -79,7 +79,7 @@ Each frequency code is classified by source tier:
 ### Go (canonical implementation)
 
 ```bash
-go get github.com/FibrinLab/open-pharma-dosing
+go get github.com/Open-Nucleus/open-pharm-dosing
 ```
 
 ### Dart (coming soon)
@@ -99,7 +99,7 @@ pip install open-pharma-dosing
 ### Parse clinical shorthand
 
 ```go
-import dosing "github.com/FibrinLab/open-pharma-dosing"
+import dosing "github.com/Open-Nucleus/open-pharm-dosing"
 
 // Parse accepts canonical codes, aliases, mixed case, and punctuation variants
 fc, _ := dosing.Parse("BD")           // → FrequencyCode{Code: "BD", ...}
@@ -347,5 +347,5 @@ Contributions are welcome, particularly:
 
 ---
 
-*open-pharma-dosing — FibrinLab*
+*open-pharm-dosing — Open Nucleus*
 *Because "BD" shouldn't need 47 lines of FHIR XML.*
