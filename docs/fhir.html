@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FHIR Mapping &mdash; open-pharma-dosing</title>
+  <meta name="description" content="FHIR R4 Timing mapping tables, worked JSON examples, and roundtrip invariant documentation.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<input type="checkbox" class="hamburger-toggle" id="menu-toggle">
+<label class="hamburger-label" for="menu-toggle" aria-label="Toggle menu">&#9776;</label>
+<div class="overlay" onclick="document.getElementById('menu-toggle').checked=false"></div>
+
+<div class="page">
+
+<aside class="sidebar">
+  <a href="index.html" class="sidebar-brand">open-pharma-dosing</a>
+  <span class="sidebar-version">v0.1.0 &middot; Go</span>
+  <nav>
+    <span class="nav-section">Documentation</span>
+    <a href="index.html">Home</a>
+    <a href="api.html">API Reference</a>
+    <a href="registry.html">Frequency Registry</a>
+    <a href="fhir.html" class="active">FHIR Mapping</a>
+    <span class="nav-section">On this page</span>
+    <a href="#timing-map">Timing Mapping</a>
+    <a href="#event-timing">EventTiming Codes</a>
+    <a href="#worked-timing">Worked Example: Timing</a>
+    <a href="#worked-dosage">Worked Example: Dosage</a>
+    <a href="#roundtrip">Roundtrip Invariant</a>
+    <a href="#gts-coverage">GTS Coverage</a>
+    <span class="nav-section">Links</span>
+    <a href="https://github.com/Open-Nucleus/open-pharm-dosing">GitHub</a>
+  </nav>
+  <div class="sidebar-footer">
+    Apache 2.0 &middot; <a href="https://github.com/Open-Nucleus">Open Nucleus</a>
+  </div>
+</aside>
+
+<main class="main">
+
+<h1>FHIR Mapping
+  <span class="subtitle">Bidirectional conversion between clinical shorthand and FHIR R4 Timing / Dosage structures.</span>
+</h1>
+
+<div class="callout">
+  <strong>Key invariant:</strong>
+  <code>FromFhirTiming(ToFhirTiming(code)) == code</code> for all 33 supported codes.
+  Three documented ambiguities resolve to equivalent codes.
+</div>
+
+<!-- ── Timing Mapping Table ────────────────────────────────── -->
+<h2 id="timing-map">Frequency &rarr; FHIR Timing</h2>
+<p>How each frequency code maps to <code>Timing.repeat</code> and <code>Timing.code</code> fields.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>frequency</th>
+      <th>period</th>
+      <th>periodUnit</th>
+      <th>timeOfDay</th>
+      <th>when</th>
+      <th>count</th>
+      <th>asNeeded</th>
+      <th>FHIR code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code>OD</code></td><td>1</td><td>1</td><td>d</td><td>["08:00"]</td><td></td><td></td><td></td><td><code>QD</code></td></tr>
+    <tr><td><code>BD</code></td><td>2</td><td>1</td><td>d</td><td>["08:00","20:00"]</td><td></td><td></td><td></td><td><code>BID</code></td></tr>
+    <tr><td><code>TDS</code></td><td>3</td><td>1</td><td>d</td><td>["08:00","14:00","20:00"]</td><td></td><td></td><td></td><td><code>TID</code></td></tr>
+    <tr><td><code>QDS</code></td><td>4</td><td>1</td><td>d</td><td>["06:00","12:00","18:00","22:00"]</td><td></td><td></td><td></td><td><code>QID</code></td></tr>
+    <tr><td><code>5X_DAILY</code></td><td>5</td><td>1</td><td>d</td><td>["06:00","10:00","14:00","18:00","22:00"]</td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>Q1H</code></td><td>1</td><td>1</td><td>h</td><td></td><td></td><td></td><td></td><td><code>Q1H</code></td></tr>
+    <tr><td><code>Q2H</code></td><td>1</td><td>2</td><td>h</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>Q4H</code></td><td>1</td><td>4</td><td>h</td><td></td><td></td><td></td><td></td><td><code>Q4H</code></td></tr>
+    <tr><td><code>Q6H</code></td><td>1</td><td>6</td><td>h</td><td></td><td></td><td></td><td></td><td><code>Q6H</code></td></tr>
+    <tr><td><code>Q8H</code></td><td>1</td><td>8</td><td>h</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>Q12H</code></td><td>1</td><td>12</td><td>h</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>Q24H</code></td><td>1</td><td>24</td><td>h</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>Q36H</code></td><td>1</td><td>36</td><td>h</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>Q48H</code></td><td>1</td><td>48</td><td>h</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>Q72H</code></td><td>1</td><td>72</td><td>h</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>MANE</code></td><td>1</td><td>1</td><td>d</td><td>["08:00"]</td><td></td><td></td><td></td><td><code>AM</code></td></tr>
+    <tr><td><code>NOCTE</code></td><td>1</td><td>1</td><td>d</td><td></td><td>NIGHT</td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>MIDI</code></td><td>1</td><td>1</td><td>d</td><td>["12:00"]</td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>AM_PM</code></td><td>2</td><td>1</td><td>d</td><td>["08:00","20:00"]</td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>AC</code></td><td></td><td></td><td></td><td></td><td>AC</td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>PC</code></td><td></td><td></td><td></td><td></td><td>PC</td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>CC</code></td><td></td><td></td><td></td><td></td><td>C</td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>AC_HS</code></td><td>4</td><td>1</td><td>d</td><td></td><td>AC, HS</td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>PRN</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td>true</td><td>&mdash;</td></tr>
+    <tr><td><code>PRN_Q4H</code></td><td>1</td><td>4</td><td>h</td><td></td><td></td><td></td><td>true</td><td>&mdash;</td></tr>
+    <tr><td><code>PRN_Q6H</code></td><td>1</td><td>6</td><td>h</td><td></td><td></td><td></td><td>true</td><td>&mdash;</td></tr>
+    <tr><td><code>SOS</code></td><td></td><td></td><td></td><td></td><td></td><td></td><td>true</td><td>&mdash;</td></tr>
+    <tr><td><code>STAT</code></td><td></td><td></td><td></td><td></td><td></td><td>1</td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>ONCE</code></td><td></td><td></td><td></td><td></td><td></td><td>1</td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>QOD</code></td><td>1</td><td>2</td><td>d</td><td></td><td></td><td></td><td></td><td><code>QOD</code></td></tr>
+    <tr><td><code>WEEKLY</code></td><td>1</td><td>1</td><td>wk</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>BIWEEKLY</code></td><td>1</td><td>2</td><td>wk</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+    <tr><td><code>MONTHLY</code></td><td>1</td><td>1</td><td>mo</td><td></td><td></td><td></td><td></td><td>&mdash;</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ── EventTiming ─────────────────────────────────────────── -->
+<h2 id="event-timing">FHIR EventTiming Codes</h2>
+<p>How <code>Timing.repeat.when</code> values map to open-pharma-dosing codes.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>FHIR when</th><th>Mapping</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>MORN</code></td><td>MANE</td></tr>
+    <tr><td><code>MORN.early</code></td><td>Early morning (06:00)</td></tr>
+    <tr><td><code>MORN.late</code></td><td>Late morning (10:00)</td></tr>
+    <tr><td><code>NOON</code></td><td>MIDI</td></tr>
+    <tr><td><code>AFT</code></td><td>Afternoon</td></tr>
+    <tr><td><code>AFT.early</code></td><td>Early afternoon (14:00)</td></tr>
+    <tr><td><code>AFT.late</code></td><td>Late afternoon (16:00)</td></tr>
+    <tr><td><code>EVE</code></td><td>Evening</td></tr>
+    <tr><td><code>EVE.early</code></td><td>Early evening (18:00)</td></tr>
+    <tr><td><code>EVE.late</code></td><td>Late evening (20:00)</td></tr>
+    <tr><td><code>NIGHT</code></td><td>NOCTE</td></tr>
+    <tr><td><code>PHS</code></td><td>After sleep</td></tr>
+    <tr><td><code>HS</code></td><td>At bedtime (equivalent to NOCTE)</td></tr>
+    <tr><td><code>AC</code></td><td>Before meal (AC modifier)</td></tr>
+    <tr><td><code>ACM</code></td><td>Before breakfast</td></tr>
+    <tr><td><code>ACD</code></td><td>Before lunch</td></tr>
+    <tr><td><code>ACV</code></td><td>Before dinner</td></tr>
+    <tr><td><code>PC</code></td><td>After meal (PC modifier)</td></tr>
+    <tr><td><code>PCM</code></td><td>After breakfast</td></tr>
+    <tr><td><code>PCD</code></td><td>After lunch</td></tr>
+    <tr><td><code>PCV</code></td><td>After dinner</td></tr>
+    <tr><td><code>C</code></td><td>With meal (CC modifier)</td></tr>
+    <tr><td><code>CM</code></td><td>With breakfast</td></tr>
+    <tr><td><code>CD</code></td><td>With lunch</td></tr>
+    <tr><td><code>CV</code></td><td>With dinner</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ── Worked Example: Timing ──────────────────────────────── -->
+<h2 id="worked-timing">Worked Example: BD &rarr; FHIR Timing</h2>
+<p>Converting &ldquo;BD&rdquo; (twice daily) to a FHIR R4 Timing resource:</p>
+
+<div class="code-label">Go</div>
+<pre><code>timingJSON, _ := dosing.<span class="fn">ToFhirTiming</span>(<span class="str">"BD"</span>)</code></pre>
+
+<div class="code-label">Output JSON</div>
+<pre><code>{
+  <span class="key">"repeat"</span>: {
+    <span class="key">"frequency"</span>: <span class="num">2</span>,
+    <span class="key">"period"</span>: <span class="num">1</span>,
+    <span class="key">"periodUnit"</span>: <span class="str">"d"</span>,
+    <span class="key">"timeOfDay"</span>: [<span class="str">"08:00"</span>, <span class="str">"20:00"</span>]
+  },
+  <span class="key">"code"</span>: {
+    <span class="key">"coding"</span>: [
+      {
+        <span class="key">"system"</span>: <span class="str">"http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation"</span>,
+        <span class="key">"code"</span>: <span class="str">"BID"</span>
+      }
+    ]
+  }
+}</code></pre>
+
+<p>The reverse conversion recovers the original code:</p>
+
+<div class="code-label">Go</div>
+<pre><code>fc, _ := dosing.<span class="fn">FromFhirTiming</span>(timingJSON)
+fmt.<span class="fn">Println</span>(fc.Code) <span class="cmt">// "BD"</span></code></pre>
+
+<p><code>FromFhirTiming</code> uses three strategies in order:</p>
+<ol>
+  <li><strong>FHIR code match</strong> &mdash; if <code>Timing.code.coding</code> contains a recognised GTS code (e.g. <code>BID</code>), return the corresponding frequency immediately.</li>
+  <li><strong>When-based match</strong> &mdash; if <code>repeat.when</code> is set (e.g. <code>NIGHT</code>, <code>AC</code>), map to the appropriate code.</li>
+  <li><strong>Structure match</strong> &mdash; match by <code>frequency</code>/<code>period</code>/<code>periodUnit</code>/<code>count</code>/<code>asNeeded</code> combination.</li>
+</ol>
+
+<!-- ── Worked Example: Dosage ──────────────────────────────── -->
+<h2 id="worked-dosage">Worked Example: DosingInstruction &rarr; FHIR Dosage</h2>
+<p>Converting a complete dosing instruction to a FHIR R4 Dosage resource:</p>
+
+<div class="code-label">Go</div>
+<pre><code>fc, _ := dosing.<span class="fn">Parse</span>(<span class="str">"BD"</span>)
+instruction := &amp;dosing.<span class="typ">DosingInstruction</span>{
+    Frequency: fc,
+    Dose:      &amp;dosing.<span class="typ">Dose</span>{Value: <span class="num">500</span>, Unit: <span class="str">"mg"</span>},
+    Route:     <span class="str">"PO"</span>,
+}
+dosageJSON, _ := dosing.<span class="fn">ToFhirDosage</span>(instruction)</code></pre>
+
+<div class="code-label">Output JSON</div>
+<pre><code>{
+  <span class="key">"timing"</span>: {
+    <span class="key">"repeat"</span>: {
+      <span class="key">"frequency"</span>: <span class="num">2</span>,
+      <span class="key">"period"</span>: <span class="num">1</span>,
+      <span class="key">"periodUnit"</span>: <span class="str">"d"</span>,
+      <span class="key">"timeOfDay"</span>: [<span class="str">"08:00"</span>, <span class="str">"20:00"</span>]
+    },
+    <span class="key">"code"</span>: {
+      <span class="key">"coding"</span>: [
+        {
+          <span class="key">"system"</span>: <span class="str">"http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation"</span>,
+          <span class="key">"code"</span>: <span class="str">"BID"</span>
+        }
+      ]
+    }
+  },
+  <span class="key">"route"</span>: {
+    <span class="key">"text"</span>: <span class="str">"PO"</span>
+  },
+  <span class="key">"doseAndRate"</span>: [
+    {
+      <span class="key">"doseQuantity"</span>: {
+        <span class="key">"value"</span>: <span class="num">500</span>,
+        <span class="key">"unit"</span>: <span class="str">"mg"</span>
+      }
+    }
+  ]
+}</code></pre>
+
+<p>The reverse conversion recovers the instruction:</p>
+
+<div class="code-label">Go</div>
+<pre><code>result, _ := dosing.<span class="fn">FromFhirDosage</span>(dosageJSON)
+fmt.<span class="fn">Println</span>(result.Frequency.Code) <span class="cmt">// "BD"</span>
+fmt.<span class="fn">Println</span>(result.Dose.Value)     <span class="cmt">// 500</span>
+fmt.<span class="fn">Println</span>(result.Dose.Unit)      <span class="cmt">// "mg"</span>
+fmt.<span class="fn">Println</span>(result.Route)          <span class="cmt">// "PO"</span></code></pre>
+
+<!-- ── Roundtrip Invariant ─────────────────────────────────── -->
+<h2 id="roundtrip">Roundtrip Invariant</h2>
+
+<div class="callout-green callout">
+  <strong>FHIR roundtrip fidelity:</strong>
+  <code>FromFhirTiming(ToFhirTiming(code)) == code</code> holds for all 33 supported frequency codes.
+</div>
+
+<p>Three codes have documented structural ambiguities where the roundtrip resolves to an equivalent code. These are <em>structurally indistinguishable</em> in FHIR and resolve to the more common code:</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Input</th><th>Roundtrip Result</th><th>Reason</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ONCE</code></td>
+      <td><code>STAT</code></td>
+      <td>Both produce <code>count: 1</code>; STAT is the default for single-count timings</td>
+    </tr>
+    <tr>
+      <td><code>AM_PM</code></td>
+      <td><code>BD</code></td>
+      <td>Both produce <code>frequency: 2, period: 1/d, timeOfDay: ["08:00", "20:00"]</code></td>
+    </tr>
+    <tr>
+      <td><code>SOS</code></td>
+      <td><code>PRN</code></td>
+      <td>Both produce <code>asNeeded: true</code> without period constraints</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout-warn callout">
+  <strong>Why these ambiguities exist:</strong>
+  FHIR&rsquo;s <code>Timing.repeat</code> structure does not have enough fields to distinguish these pairs.
+  For example, both ONCE and STAT produce <code>{"repeat": {"count": 1}}</code> &mdash; there is no FHIR field
+  that captures &ldquo;immediate&rdquo; vs &ldquo;scheduled single dose.&rdquo; The library resolves to the more
+  commonly used code (STAT over ONCE, BD over AM_PM, PRN over SOS).
+</div>
+
+<!-- ── GTS Coverage ────────────────────────────────────────── -->
+<h2 id="gts-coverage">HL7 v3-GTSAbbreviation Coverage</h2>
+<p>The library supports <strong>all</strong> medication-relevant codes from the HL7 v3-GTSAbbreviation CodeSystem:</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>GTS Code</th><th>GTS Display</th><th>Library Code</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>QD</code></td><td>Every day</td><td>OD (alias: QD)</td><td>Supported</td></tr>
+    <tr><td><code>BID</code></td><td>Twice a day</td><td>BD (alias: BID)</td><td>Supported</td></tr>
+    <tr><td><code>TID</code></td><td>Three times a day</td><td>TDS (alias: TID)</td><td>Supported</td></tr>
+    <tr><td><code>QID</code></td><td>Four times a day</td><td>QDS (alias: QID)</td><td>Supported</td></tr>
+    <tr><td><code>Q1H</code></td><td>Every hour</td><td>Q1H</td><td>Supported</td></tr>
+    <tr><td><code>Q2H</code></td><td>Every 2 hours</td><td>Q2H</td><td>Supported</td></tr>
+    <tr><td><code>Q3H</code></td><td>Every 3 hours</td><td>&mdash;</td><td>Not yet included (rare)</td></tr>
+    <tr><td><code>Q4H</code></td><td>Every 4 hours</td><td>Q4H</td><td>Supported</td></tr>
+    <tr><td><code>Q6H</code></td><td>Every 6 hours</td><td>Q6H</td><td>Supported</td></tr>
+    <tr><td><code>Q8H</code></td><td>Every 8 hours</td><td>Q8H</td><td>Supported</td></tr>
+    <tr><td><code>QOD</code></td><td>Every other day</td><td>QOD</td><td>Supported</td></tr>
+    <tr><td><code>AM</code></td><td>Every morning</td><td>MANE (FHIR code: AM)</td><td>Supported</td></tr>
+    <tr><td><code>PM</code></td><td>Every afternoon</td><td>&mdash;</td><td>Mapped via EventTiming</td></tr>
+    <tr><td><code>BED</code></td><td>At bedtime</td><td>NOCTE (alias: HS)</td><td>Supported</td></tr>
+    <tr><td><code>WK</code></td><td>Weekly</td><td>WEEKLY</td><td>Supported</td></tr>
+    <tr><td><code>MO</code></td><td>Monthly</td><td>MONTHLY</td><td>Supported</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout">
+  <strong>Note:</strong> The GTS CodeSystem also includes non-dosing codes (JB, JE, JH and holiday sub-codes) which are not relevant to medication dosing and are excluded.
+</div>
+
+<div class="page-footer">
+  open-pharma-dosing &middot; <a href="https://github.com/Open-Nucleus">Open Nucleus</a> &middot; Apache 2.0
+</div>
+
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Frequency Registry &mdash; open-pharma-dosing</title>
+  <meta name="description" content="All 33 dosing frequency codes with aliases, default times, Latin origins, and FHIR mappings.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<input type="checkbox" class="hamburger-toggle" id="menu-toggle">
+<label class="hamburger-label" for="menu-toggle" aria-label="Toggle menu">&#9776;</label>
+<div class="overlay" onclick="document.getElementById('menu-toggle').checked=false"></div>
+
+<div class="page">
+
+<aside class="sidebar">
+  <a href="index.html" class="sidebar-brand">open-pharma-dosing</a>
+  <span class="sidebar-version">v0.1.0 &middot; Go</span>
+  <nav>
+    <span class="nav-section">Documentation</span>
+    <a href="index.html">Home</a>
+    <a href="api.html">API Reference</a>
+    <a href="registry.html" class="active">Frequency Registry</a>
+    <a href="fhir.html">FHIR Mapping</a>
+    <span class="nav-section">On this page</span>
+    <a href="#regular">Regular</a>
+    <a href="#interval">Interval</a>
+    <a href="#time-of-day">Time of Day</a>
+    <a href="#meal-relative">Meal Relative</a>
+    <a href="#prn">PRN</a>
+    <a href="#one-off">One-Off</a>
+    <a href="#extended">Extended</a>
+    <span class="nav-section">Links</span>
+    <a href="https://github.com/Open-Nucleus/open-pharm-dosing">GitHub</a>
+  </nav>
+  <div class="sidebar-footer">
+    Apache 2.0 &middot; <a href="https://github.com/Open-Nucleus">Open Nucleus</a>
+  </div>
+</aside>
+
+<main class="main">
+
+<h1>Frequency Registry
+  <span class="subtitle">33 dosing frequency codes across 7 categories.</span>
+</h1>
+
+<p>Source tiers: <span class="badge badge-s1">S1</span> HL7 v3-GTSAbbreviation &nbsp; <span class="badge badge-s2">S2</span> NHS Convention &nbsp; <span class="badge badge-s3">S3</span> Clinical Extension</p>
+
+<!-- Filters -->
+<div class="filters">
+  <button class="filter-btn active" data-cat="all">All (33)</button>
+  <button class="filter-btn" data-cat="regular">Regular (5)</button>
+  <button class="filter-btn" data-cat="interval">Interval (10)</button>
+  <button class="filter-btn" data-cat="time_of_day">Time of Day (4)</button>
+  <button class="filter-btn" data-cat="meal_relative">Meal Relative (4)</button>
+  <button class="filter-btn" data-cat="prn">PRN (4)</button>
+  <button class="filter-btn" data-cat="one_off">One-Off (2)</button>
+  <button class="filter-btn" data-cat="extended">Extended (4)</button>
+</div>
+
+<!-- ── Regular ──────────────────────────────────────────────── -->
+<h2 id="regular">Regular Frequencies</h2>
+<p>Standard daily dosing patterns with fixed administration times.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Code</th><th>Display</th><th>Aliases</th><th>Freq</th><th>Interval</th><th>Default Times</th><th>Latin</th><th>Source</th><th>FHIR</th></tr>
+  </thead>
+  <tbody class="cat-regular">
+    <tr>
+      <td><code>OD</code></td>
+      <td>Once daily</td>
+      <td>QD, od, o.d., q.d., once daily, daily</td>
+      <td>1/d</td>
+      <td>24h</td>
+      <td>08:00</td>
+      <td><em>omni die</em></td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>QD</code></td>
+    </tr>
+    <tr>
+      <td><code>BD</code></td>
+      <td>Twice daily</td>
+      <td>BID, bd, b.d., b.i.d., twice daily</td>
+      <td>2/d</td>
+      <td>12h</td>
+      <td>08:00, 20:00</td>
+      <td><em>bis in die</em></td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>BID</code></td>
+    </tr>
+    <tr>
+      <td><code>TDS</code></td>
+      <td>Three times daily</td>
+      <td>TID, tds, t.d.s., t.i.d., three times daily</td>
+      <td>3/d</td>
+      <td>8h</td>
+      <td>08:00, 14:00, 20:00</td>
+      <td><em>ter die sumendus</em></td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>TID</code></td>
+    </tr>
+    <tr>
+      <td><code>QDS</code></td>
+      <td>Four times daily</td>
+      <td>QID, qds, q.d.s., q.i.d., four times daily</td>
+      <td>4/d</td>
+      <td>6h</td>
+      <td>06:00, 12:00, 18:00, 22:00</td>
+      <td><em>quater die sumendus</em></td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>QID</code></td>
+    </tr>
+    <tr>
+      <td><code>5X_DAILY</code></td>
+      <td>Five times daily</td>
+      <td>5x daily, five times daily</td>
+      <td>5/d</td>
+      <td>~4.8h</td>
+      <td>06:00, 10:00, 14:00, 18:00, 22:00</td>
+      <td>&mdash;</td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout">
+  <strong>Locale note:</strong> OD/BD/TDS/QDS are en-GB (NHS) canonical forms. QD/BID/TID/QID are en-US equivalents from the HL7 GTS standard. Both are valid aliases.
+</div>
+
+<!-- ── Interval ─────────────────────────────────────────────── -->
+<h2 id="interval">Interval-Based Frequencies</h2>
+<p>Fixed-interval dosing. Codes with empty default times use rolling schedules from the start time.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Code</th><th>Display</th><th>Aliases</th><th>Interval</th><th>Default Times</th><th>Source</th><th>FHIR</th></tr>
+  </thead>
+  <tbody class="cat-interval">
+    <tr>
+      <td><code>Q1H</code></td>
+      <td>Every 1 hour</td>
+      <td>every 1 hour, hourly, q1h</td>
+      <td>1h</td>
+      <td><em>rolling</em></td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>Q1H</code></td>
+    </tr>
+    <tr>
+      <td><code>Q2H</code></td>
+      <td>Every 2 hours</td>
+      <td>every 2 hours, q2h</td>
+      <td>2h</td>
+      <td><em>rolling</em></td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>Q4H</code></td>
+      <td>Every 4 hours</td>
+      <td>every 4 hours, q4h</td>
+      <td>4h</td>
+      <td>06:00, 10:00, 14:00, 18:00, 22:00, 02:00</td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>Q4H</code></td>
+    </tr>
+    <tr>
+      <td><code>Q6H</code></td>
+      <td>Every 6 hours</td>
+      <td>every 6 hours, q6h</td>
+      <td>6h</td>
+      <td>06:00, 12:00, 18:00, 00:00</td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>Q6H</code></td>
+    </tr>
+    <tr>
+      <td><code>Q8H</code></td>
+      <td>Every 8 hours</td>
+      <td>every 8 hours, q8h</td>
+      <td>8h</td>
+      <td>06:00, 14:00, 22:00</td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>Q12H</code></td>
+      <td>Every 12 hours</td>
+      <td>every 12 hours, q12h</td>
+      <td>12h</td>
+      <td>08:00, 20:00</td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>Q24H</code></td>
+      <td>Every 24 hours</td>
+      <td>every 24 hours, q24h</td>
+      <td>24h</td>
+      <td>08:00</td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>Q36H</code></td>
+      <td>Every 36 hours</td>
+      <td>every 36 hours, q36h</td>
+      <td>36h</td>
+      <td><em>rolling</em></td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>Q48H</code></td>
+      <td>Every 48 hours</td>
+      <td>every 48 hours, alternate days, q48h</td>
+      <td>48h</td>
+      <td>08:00</td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>Q72H</code></td>
+      <td>Every 72 hours</td>
+      <td>every 72 hours, q72h</td>
+      <td>72h</td>
+      <td><em>rolling</em></td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ── Time of Day ──────────────────────────────────────────── -->
+<h2 id="time-of-day">Time-of-Day Frequencies</h2>
+<p>Doses tied to a specific time of day rather than an interval.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Code</th><th>Display</th><th>Aliases</th><th>Default Time</th><th>Latin</th><th>Source</th><th>FHIR</th></tr>
+  </thead>
+  <tbody class="cat-time_of_day">
+    <tr>
+      <td><code>MANE</code></td>
+      <td>In the morning</td>
+      <td>mane, morning, AM, in the morning</td>
+      <td>08:00</td>
+      <td><em>mane</em></td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>AM</code></td>
+    </tr>
+    <tr>
+      <td><code>NOCTE</code></td>
+      <td>At night</td>
+      <td>nocte, ON, at night, at bedtime, HS</td>
+      <td>22:00</td>
+      <td><em>nocte</em></td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>MIDI</code></td>
+      <td>At midday</td>
+      <td>midday, noon, lunchtime</td>
+      <td>12:00</td>
+      <td>&mdash;</td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>AM_PM</code></td>
+      <td>Morning and evening</td>
+      <td>morning and evening, AM+PM</td>
+      <td>08:00, 20:00</td>
+      <td>&mdash;</td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ── Meal Relative ────────────────────────────────────────── -->
+<h2 id="meal-relative">Meal-Relative Frequencies</h2>
+<p>These are <strong>modifiers</strong> &mdash; they combine with a base frequency. &ldquo;TDS AC&rdquo; = three times daily before meals.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Code</th><th>Display</th><th>Aliases</th><th>Relation</th><th>Latin</th><th>Source</th></tr>
+  </thead>
+  <tbody class="cat-meal_relative">
+    <tr>
+      <td><code>AC</code></td>
+      <td>Before meals</td>
+      <td>a.c., before food, before meals, ante cibum</td>
+      <td>Before</td>
+      <td><em>ante cibum</em></td>
+      <td><span class="badge badge-s2">S2</span></td>
+    </tr>
+    <tr>
+      <td><code>PC</code></td>
+      <td>After meals</td>
+      <td>p.c., after food, after meals, post cibum</td>
+      <td>After</td>
+      <td><em>post cibum</em></td>
+      <td><span class="badge badge-s2">S2</span></td>
+    </tr>
+    <tr>
+      <td><code>CC</code></td>
+      <td>With meals</td>
+      <td>c.c., with food, with meals, cum cibo</td>
+      <td>With</td>
+      <td><em>cum cibo</em></td>
+      <td><span class="badge badge-s3">S3</span></td>
+    </tr>
+    <tr>
+      <td><code>AC_HS</code></td>
+      <td>Before meals and at bedtime</td>
+      <td>before meals and at bedtime, AC+HS</td>
+      <td>Before + bedtime</td>
+      <td>&mdash;</td>
+      <td><span class="badge badge-s3">S3</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ── PRN ──────────────────────────────────────────────────── -->
+<h2 id="prn">As-Needed (PRN) Frequencies</h2>
+<p>Doses taken when required, optionally with minimum interval and daily maximum constraints.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Code</th><th>Display</th><th>Aliases</th><th>Max/Day</th><th>Min Interval</th><th>Latin</th><th>Source</th></tr>
+  </thead>
+  <tbody class="cat-prn">
+    <tr>
+      <td><code>PRN</code></td>
+      <td>As needed</td>
+      <td>p.r.n., as needed, as required, when required, pro re nata</td>
+      <td>configurable</td>
+      <td>&mdash;</td>
+      <td><em>pro re nata</em></td>
+      <td><span class="badge badge-s2">S2</span></td>
+    </tr>
+    <tr>
+      <td><code>PRN_Q4H</code></td>
+      <td>As needed, max every 4 hours</td>
+      <td>PRN every 4 hours, as needed max every 4 hours, p.r.n. q4h</td>
+      <td>6</td>
+      <td>4h</td>
+      <td>&mdash;</td>
+      <td><span class="badge badge-s3">S3</span></td>
+    </tr>
+    <tr>
+      <td><code>PRN_Q6H</code></td>
+      <td>As needed, max every 6 hours</td>
+      <td>PRN every 6 hours, as needed max every 6 hours, p.r.n. q6h</td>
+      <td>4</td>
+      <td>6h</td>
+      <td>&mdash;</td>
+      <td><span class="badge badge-s3">S3</span></td>
+    </tr>
+    <tr>
+      <td><code>SOS</code></td>
+      <td>If needed (single use)</td>
+      <td>s.o.s., if needed, si opus sit</td>
+      <td>1</td>
+      <td>&mdash;</td>
+      <td><em>si opus sit</em></td>
+      <td><span class="badge badge-s3">S3</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ── One-Off ──────────────────────────────────────────────── -->
+<h2 id="one-off">One-Off Frequencies</h2>
+<p>Single-administration doses.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Code</th><th>Display</th><th>Aliases</th><th>Count</th><th>Latin</th><th>Source</th></tr>
+  </thead>
+  <tbody class="cat-one_off">
+    <tr>
+      <td><code>STAT</code></td>
+      <td>Immediately</td>
+      <td>stat, immediately, now, statim</td>
+      <td>1</td>
+      <td><em>statim</em></td>
+      <td><span class="badge badge-s2">S2</span></td>
+    </tr>
+    <tr>
+      <td><code>ONCE</code></td>
+      <td>Single dose</td>
+      <td>single dose, one-off, &times;1, x1</td>
+      <td>1</td>
+      <td>&mdash;</td>
+      <td><span class="badge badge-s3">S3</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ── Extended ─────────────────────────────────────────────── -->
+<h2 id="extended">Extended Interval Frequencies</h2>
+<p>Multi-day, weekly, or monthly dosing schedules.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Code</th><th>Display</th><th>Aliases</th><th>Period</th><th>Default Time</th><th>Source</th><th>FHIR</th></tr>
+  </thead>
+  <tbody class="cat-extended">
+    <tr>
+      <td><code>QOD</code></td>
+      <td>Every other day</td>
+      <td>every other day, alternate days, on alternate days, qod</td>
+      <td>2 days</td>
+      <td>08:00</td>
+      <td><span class="badge badge-s1">S1</span> <span class="badge badge-s2">S2</span></td>
+      <td><code>QOD</code></td>
+    </tr>
+    <tr>
+      <td><code>WEEKLY</code></td>
+      <td>Once weekly</td>
+      <td>once a week, weekly, every week, Q1W</td>
+      <td>1 week</td>
+      <td>08:00</td>
+      <td><span class="badge badge-s1">S1</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>BIWEEKLY</code></td>
+      <td>Every 2 weeks</td>
+      <td>every 2 weeks, fortnightly, Q2W</td>
+      <td>2 weeks</td>
+      <td>08:00</td>
+      <td><span class="badge badge-s3">S3</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td><code>MONTHLY</code></td>
+      <td>Once monthly</td>
+      <td>once a month, monthly, Q1M</td>
+      <td>1 month</td>
+      <td>08:00</td>
+      <td><span class="badge badge-s1">S1</span></td>
+      <td>&mdash;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="page-footer">
+  open-pharma-dosing &middot; <a href="https://github.com/Open-Nucleus">Open Nucleus</a> &middot; Apache 2.0
+</div>
+
+</main>
+</div>
+
+<!-- Category filter script (~20 lines) -->
+<script>
+(function() {
+  var btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.getAttribute('data-cat');
+      var sections = document.querySelectorAll('h2[id], h2[id] ~ p, h2[id] ~ .callout, h2[id] ~ .table-wrap');
+      var headings = document.querySelectorAll('h2[id]');
+      headings.forEach(function(h) {
+        var id = h.getAttribute('id');
+        var show = (cat === 'all') || (id === cat) || (id === 'time-of-day' && cat === 'time_of_day') || (id === 'meal-relative' && cat === 'meal_relative') || (id === 'one-off' && cat === 'one_off');
+        var el = h;
+        while (el && el.tagName !== 'H2' || el === h) {
+          if (el.tagName === 'H2' && el !== h) break;
+          el.style.display = show ? '' : 'none';
+          el = el.nextElementSibling;
+          if (!el) break;
+        }
+        h.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

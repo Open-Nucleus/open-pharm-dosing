@@ -1,0 +1,511 @@
+/* open-pharma-dosing documentation — style.css */
+
+/* ── Reset & Base ──────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  color: #1a1a1a;
+  background: #fff;
+  line-height: 1.6;
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+
+.page {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: #f7f8fa;
+  border-right: 1px solid #e0e0e0;
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0066cc;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-version {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  margin-bottom: 0.15rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.sidebar nav a:hover {
+  background: #e8eef5;
+  color: #0066cc;
+}
+
+.sidebar nav a.active {
+  background: #0066cc;
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebar nav .nav-section {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
+  padding-left: 0.75rem;
+}
+
+.sidebar-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.sidebar-footer a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+/* Main content */
+.main {
+  flex: 1;
+  max-width: 900px;
+  padding: 2.5rem 3rem 4rem;
+}
+
+/* ── Mobile hamburger (CSS-only) ───────────────────────────── */
+
+.hamburger-toggle { display: none; }
+.hamburger-label  { display: none; }
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    z-index: 100;
+    transition: left 0.25s ease;
+    box-shadow: none;
+  }
+
+  .hamburger-toggle:checked ~ .sidebar {
+    left: 0;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+  }
+
+  .hamburger-toggle:checked ~ .overlay {
+    display: block;
+  }
+
+  .hamburger-label {
+    display: block;
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 101;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 36px;
+    font-size: 1.25rem;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .main {
+    padding: 3rem 1.25rem 3rem;
+    max-width: 100%;
+  }
+}
+
+/* ── Typography ────────────────────────────────────────────── */
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+h1 .subtitle {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #555;
+  margin-top: 0.4rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid #e8eef5;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul, ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.35rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 2rem 0;
+}
+
+/* ── Code ──────────────────────────────────────────────────── */
+
+code {
+  font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 0.875em;
+  background: #f4f5f7;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  color: #c7254e;
+}
+
+pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+  font-size: 0.85rem;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+  border-radius: 0;
+}
+
+/* Syntax colouring (hand-applied spans) */
+pre .kw  { color: #cba6f7; }         /* keywords: func, type, const, var, package, import */
+pre .fn  { color: #89b4fa; }         /* function names */
+pre .str { color: #a6e3a1; }         /* strings */
+pre .cmt { color: #6c7086; font-style: italic; }  /* comments */
+pre .typ { color: #f9e2af; }         /* types */
+pre .num { color: #fab387; }         /* numbers */
+pre .op  { color: #89dceb; }         /* operators, punctuation */
+pre .key { color: #f38ba8; }         /* JSON keys */
+
+/* Code block label */
+.code-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #313244;
+  color: #bac2de;
+  padding: 0.15rem 0.6rem;
+  border-radius: 6px 6px 0 0;
+  margin-bottom: -1px;
+  position: relative;
+  top: 1px;
+}
+
+/* ── Tables ────────────────────────────────────────────────── */
+
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+thead {
+  background: #f7f8fa;
+}
+
+th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #555;
+  border-bottom: 2px solid #e0e0e0;
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+
+tr:hover td {
+  background: #f7faff;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Source Tier Badges ─────────────────────────────────────── */
+
+.badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.badge-s1 {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-s2 {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-s3 {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+/* ── Feature Cards ─────────────────────────────────────────── */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: #f7f8fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+}
+
+.card p {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0;
+}
+
+/* ── Callout boxes ─────────────────────────────────────────── */
+
+.callout {
+  border-left: 4px solid #0066cc;
+  background: #f0f6ff;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.9rem;
+}
+
+.callout-warn {
+  border-left-color: #d97706;
+  background: #fffbeb;
+}
+
+.callout-green {
+  border-left-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.callout strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ── Filter buttons (registry page) ────────────────────────── */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.filter-btn {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  color: #333;
+}
+
+.filter-btn:hover {
+  border-color: #0066cc;
+  color: #0066cc;
+}
+
+.filter-btn.active {
+  background: #0066cc;
+  color: #fff;
+  border-color: #0066cc;
+}
+
+/* ── Roadmap list ──────────────────────────────────────────── */
+
+.roadmap {
+  list-style: none;
+  padding-left: 0;
+}
+
+.roadmap li {
+  padding: 0.4rem 0 0.4rem 1.75rem;
+  position: relative;
+}
+
+.roadmap li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.roadmap li.done::before {
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
+/* ── Provenance table ──────────────────────────────────────── */
+
+td .source-label {
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+/* ── Anchor links ──────────────────────────────────────────── */
+
+h2[id], h3[id] {
+  scroll-margin-top: 1rem;
+}
+
+/* ── Footer ────────────────────────────────────────────────── */
+
+.page-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* ── Print ─────────────────────────────────────────────────── */
+
+@media print {
+  .sidebar, .hamburger-label, .overlay { display: none; }
+  .main { max-width: 100%; padding: 0; }
+  pre { white-space: pre-wrap; }
+}

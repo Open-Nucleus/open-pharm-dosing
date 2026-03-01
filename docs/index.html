@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>open-pharma-dosing</title>
+  <meta name="description" content="Zero-dependency library for structured medication dosing frequency encoding, parsing, and FHIR R4 Timing conversion.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<input type="checkbox" class="hamburger-toggle" id="menu-toggle">
+<label class="hamburger-label" for="menu-toggle" aria-label="Toggle menu">&#9776;</label>
+<div class="overlay" onclick="document.getElementById('menu-toggle').checked=false"></div>
+
+<div class="page">
+
+<!-- ── Sidebar ──────────────────────────────────────────────── -->
+<aside class="sidebar">
+  <a href="index.html" class="sidebar-brand">open-pharma-dosing</a>
+  <span class="sidebar-version">v0.1.0 &middot; Go</span>
+  <nav>
+    <span class="nav-section">Documentation</span>
+    <a href="index.html" class="active">Home</a>
+    <a href="api.html">API Reference</a>
+    <a href="registry.html">Frequency Registry</a>
+    <a href="fhir.html">FHIR Mapping</a>
+    <span class="nav-section">Links</span>
+    <a href="https://github.com/Open-Nucleus/open-pharm-dosing">GitHub</a>
+    <a href="https://pkg.go.dev/github.com/Open-Nucleus/open-pharm-dosing">pkg.go.dev</a>
+  </nav>
+  <div class="sidebar-footer">
+    Apache 2.0 &middot; <a href="https://github.com/Open-Nucleus">Open Nucleus</a>
+  </div>
+</aside>
+
+<!-- ── Main Content ────────────────────────────────────────── -->
+<main class="main">
+
+<h1>open-pharma-dosing
+  <span class="subtitle">Structured medication dosing frequency encoding, parsing, and FHIR R4 Timing conversion.</span>
+</h1>
+
+<!-- Problem statement -->
+<h2 id="problem">The Problem</h2>
+<p>Every prescribing system deals with dosing frequencies &mdash; BD, TDS, OD, QDS, PRN, STAT, nocte, mane &mdash; yet there is no open-source, standalone library that maps these to structured timing data with bidirectional FHIR conversion.</p>
+<p>The UK says <strong>BD</strong>, the US says <strong>BID</strong>. Both mean &ldquo;twice daily, every 12 hours, typically at 08:00 and 20:00.&rdquo; Clinicians think in shorthand. FHIR thinks in <code>{ "frequency": 2, "period": 1, "periodUnit": "d" }</code>. This library bridges the gap.</p>
+
+<!-- Feature cards -->
+<h2 id="features">Features</h2>
+<div class="cards">
+  <div class="card">
+    <div class="card-icon">&#x1F50D;</div>
+    <h3>Parser</h3>
+    <p>Accepts BD, b.i.d., twice daily, every 4 hours, TID, p.r.n. &mdash; canonical codes, aliases, mixed case, punctuation variants.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">&#x1F525;</div>
+    <h3>FHIR Converter</h3>
+    <p>Bidirectional FHIR R4 Timing/Dosage conversion with roundtrip fidelity for all 33 codes.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">&#x1F4C5;</div>
+    <h3>Schedule Generator</h3>
+    <p>Concrete administration times from a code + start date. Handles rolling intervals, extended periods, and custom times.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">&#x2705;</div>
+    <h3>Validator</h3>
+    <p>Clinical sense-checking: PRN without max dose, duration with one-off codes, daily dose exceeding limits.</p>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Zero dependencies.</strong>
+  The frequency registry is embedded as compiled Go struct literals &mdash; no external files, no runtime loading, no third-party packages.
+</div>
+
+<!-- Installation -->
+<h2 id="install">Installation</h2>
+
+<h3>Go (canonical implementation)</h3>
+<div class="code-label">Terminal</div>
+<pre><code>go get github.com/Open-Nucleus/open-pharm-dosing</code></pre>
+
+<h3>Dart (coming soon)</h3>
+<pre><code>dart pub add open_pharma_dosing</code></pre>
+
+<h3>Python (coming soon)</h3>
+<pre><code>pip install open-pharma-dosing</code></pre>
+
+<!-- Quick example -->
+<h2 id="quickstart">Quick Start</h2>
+
+<div class="code-label">Go</div>
+<pre><code><span class="kw">import</span> dosing <span class="str">"github.com/Open-Nucleus/open-pharm-dosing"</span>
+
+<span class="cmt">// Parse clinical shorthand</span>
+fc, _ := dosing.<span class="fn">Parse</span>(<span class="str">"BD"</span>)           <span class="cmt">// &rarr; FrequencyCode{Code: "BD", ...}</span>
+fc, _ = dosing.<span class="fn">Parse</span>(<span class="str">"b.i.d."</span>)        <span class="cmt">// &rarr; FrequencyCode{Code: "BD", ...}</span>
+fc, _ = dosing.<span class="fn">Parse</span>(<span class="str">"twice daily"</span>)   <span class="cmt">// &rarr; FrequencyCode{Code: "BD", ...}</span>
+fc, _ = dosing.<span class="fn">Parse</span>(<span class="str">"every 4 hours"</span>) <span class="cmt">// &rarr; FrequencyCode{Code: "Q4H", ...}</span>
+
+<span class="cmt">// Convert to FHIR R4 Timing</span>
+timingJSON, _ := dosing.<span class="fn">ToFhirTiming</span>(<span class="str">"BD"</span>)
+
+<span class="cmt">// Convert back</span>
+fc, _ = dosing.<span class="fn">FromFhirTiming</span>(timingJSON)
+fmt.<span class="fn">Println</span>(fc.Code) <span class="cmt">// "BD"</span>
+
+<span class="cmt">// Generate human-readable text</span>
+text, _ := dosing.<span class="fn">ToText</span>(<span class="str">"BD"</span>, dosing.LocaleEnGB)  <span class="cmt">// "Twice daily"</span>
+label, _ := dosing.<span class="fn">ToLabel</span>(<span class="str">"BD"</span>, dosing.LocaleEnUS) <span class="cmt">// "BID"</span>
+
+<span class="cmt">// Generate concrete schedule</span>
+start := time.<span class="fn">Now</span>()
+times, _ := dosing.<span class="fn">Schedule</span>(<span class="str">"TDS"</span>, start, <span class="num">7</span>) <span class="cmt">// 7 days of TDS times</span>
+</code></pre>
+
+<!-- Standards & Provenance -->
+<h2 id="standards">Standards &amp; Provenance</h2>
+<p>Every code in this library is traceable to an authoritative source. No codes are invented.</p>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Source</th><th>What it provides</th><th>Reference</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>HL7 FHIR v3-GTSAbbreviation</strong></td>
+      <td>Formal coded timing abbreviations (QD, BID, TID, QID, Q1H&ndash;Q8H, QOD, AM, BED, WK, MO)</td>
+      <td><a href="https://terminology.hl7.org/6.5.0/CodeSystem-v3-GTSAbbreviation.html">terminology.hl7.org</a></td>
+    </tr>
+    <tr>
+      <td><strong>FHIR R4 EventTiming</strong></td>
+      <td><code>Timing.repeat.when</code> codes (MORN, NIGHT, AC, PC, HS, C)</td>
+      <td><a href="https://hl7.org/fhir/R4/valueset-event-timing.html">hl7.org/fhir/R4</a></td>
+    </tr>
+    <tr>
+      <td><strong>NHS Dose Syntax Implementation Guide</strong></td>
+      <td>UK guidance for populating FHIR Dosage structures</td>
+      <td><a href="https://nhsconnect.github.io/Dose-Syntax-Implementation/">nhsconnect.github.io</a></td>
+    </tr>
+    <tr>
+      <td><strong>NHS Dose Syntax API Standards</strong></td>
+      <td>National API standard for dose syntax in prescribing systems</td>
+      <td><a href="https://digital.nhs.uk/developer/api-catalogue/dose-syntax-standards">digital.nhs.uk</a></td>
+    </tr>
+    <tr>
+      <td><strong>NHS App Medical Records</strong></td>
+      <td>Official abbreviations list (b.d., t.d.s., q.d.s., o.d., p.r.n., nocte, stat, a.c., p.c.)</td>
+      <td><a href="https://www.nhs.uk/nhs-app/help/health-records-in-the-nhs-app/abbreviations-commonly-found-in-medical-records/">nhs.uk</a></td>
+    </tr>
+    <tr>
+      <td><strong>NHS Scotland Dose Syntax</strong></td>
+      <td>Structured dose instruction standard for Scottish prescribing (2015)</td>
+      <td><a href="https://www.scimp.scot.nhs.uk/nhs-dose-syntax-recommendations-2015">scimp.scot.nhs.uk</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="source-tiers">Source Tiers</h3>
+<p>Each frequency code is classified by source tier:</p>
+<ul>
+  <li><span class="badge badge-s1">S1</span> <strong>HL7 GTS</strong> &mdash; Code exists in the HL7 v3-GTSAbbreviation CodeSystem (formal international standard)</li>
+  <li><span class="badge badge-s2">S2</span> <strong>NHS Convention</strong> &mdash; Documented in NHS prescribing guidance or the NHS App abbreviations list</li>
+  <li><span class="badge badge-s3">S3</span> <strong>Clinical Extension</strong> &mdash; Common prescribing pattern not in S1/S2; sourced from BNF usage and Latin tradition</li>
+</ul>
+
+<!-- Roadmap -->
+<h2 id="roadmap">Roadmap</h2>
+<ul class="roadmap">
+  <li class="done"><strong>Phase 1:</strong> Core Go library &mdash; types, registry, parser, FHIR converter</li>
+  <li class="done"><strong>Phase 2:</strong> Text generation, schedule generator, validation</li>
+  <li><strong>Phase 3:</strong> Dart and Python ports</li>
+  <li><strong>Phase 4:</strong> Locale support (en-GB, en-US, fr, es, sw, ha, yo), ParseInstruction</li>
+  <li><strong>Phase 5:</strong> Complex regimens (tapering, split-dose, cyclical), EPMA integration</li>
+</ul>
+
+<!-- Design decisions -->
+<h2 id="design">Design Decisions</h2>
+<ul>
+  <li><strong>Zero dependencies.</strong> No external packages in any language implementation. The registry is embedded as compiled data.</li>
+  <li><strong>NHS-first, internationally compatible.</strong> Canonical codes use UK convention (BD, TDS, QDS, OD) with US aliases (BID, TID, QID, QD). The FHIR converter uses the HL7 GTS codes (BID, TID, QID).</li>
+  <li><strong>Registry as code, not config.</strong> 33 frequency entries are hand-written Go struct literals, type-checked at compile time.</li>
+  <li><strong>FHIR types are internal.</strong> Internal Go structs for FHIR Timing/Dosage construction, but <code>[]byte</code> (JSON) at the public API boundary.</li>
+</ul>
+
+<div class="page-footer">
+  open-pharma-dosing &middot; <a href="https://github.com/Open-Nucleus">Open Nucleus</a> &middot; Apache 2.0<br>
+  <em>Because &ldquo;BD&rdquo; shouldn&rsquo;t need 47 lines of FHIR XML.</em>
+</div>
+
+</main>
+</div>
+</body>
+</html>
