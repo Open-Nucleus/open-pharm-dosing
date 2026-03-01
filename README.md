@@ -177,6 +177,80 @@ fmt.Println(result.Dose.Value)     // 500
 fmt.Println(result.Route)          // "PO"
 ```
 
+### Generate human-readable text
+
+```go
+// Frequency code → display text (locale-aware)
+text, _ := dosing.ToText("BD", dosing.LocaleEnGB)    // "Twice daily"
+text, _ = dosing.ToText("BID", dosing.LocaleEnUS)     // "Twice daily"
+text, _ = dosing.ToText("PRN", dosing.LocaleEnGB)     // "As needed"
+
+// Frequency code → locale-preferred short label
+label, _ := dosing.ToLabel("BD", dosing.LocaleEnGB)   // "BD"
+label, _ = dosing.ToLabel("BD", dosing.LocaleEnUS)    // "BID"
+label, _ = dosing.ToLabel("TDS", dosing.LocaleEnUS)   // "TID"
+
+// Full instruction → readable text
+fc, _ := dosing.Parse("BD")
+ac, _ := dosing.Parse("AC")
+text, _ = dosing.InstructionToText(&dosing.DosingInstruction{
+    Frequency:    fc,
+    MealModifier: ac,
+    Dose:         &dosing.Dose{Value: 500, Unit: "mg"},
+    Route:        "PO",
+    Duration:     &dosing.Duration{Value: 7, Unit: dosing.PeriodDay},
+}, dosing.LocaleEnGB)
+// "500mg twice daily by mouth for 7 days, before meals"
+```
+
+### Generate concrete schedules
+
+```go
+start := time.Date(2025, 1, 15, 9, 30, 0, 0, time.UTC)
+
+// Fixed-time schedule (skips already-passed times on day 1)
+times, _ := dosing.Schedule("BD", start, 3)
+// Day 1: 20:00 (08:00 skipped — before 09:30)
+// Day 2: 08:00, 20:00
+// Day 3: 08:00, 20:00
+
+// Rolling interval (Q1H, Q2H, Q36H, Q72H — no fixed daily times)
+times, _ = dosing.Schedule("Q1H", start, 1)
+// 24 times: 09:30, 10:30, 11:30, ...
+
+// One-off
+times, _ = dosing.Schedule("STAT", start, 1)  // [2025-01-15 09:30]
+
+// Extended intervals (correct month arithmetic)
+times, _ = dosing.Schedule("MONTHLY", start, 90)
+// Jan 15, Feb 15, Mar 15 at 08:00
+
+// Custom administration times
+times, _ = dosing.ScheduleWithTimes("BD", start, 1, []string{"07:00", "19:00"})
+
+// PRN and pure meal modifiers return explicit errors
+_, err := dosing.Schedule("PRN", start, 1)    // ErrPRNNoSchedule
+_, err = dosing.Schedule("AC", start, 1)       // ErrMealRelNoSchedule
+```
+
+### Validate dosing instructions
+
+```go
+// Validate a frequency code
+err := dosing.Validate("BD")     // nil
+err = dosing.Validate("XYZZY")   // error
+
+// Validate a full instruction (returns multi-level findings)
+fc, _ := dosing.Parse("PRN")
+warnings := dosing.ValidateInstruction(&dosing.DosingInstruction{
+    Frequency: fc,
+    Dose:      &dosing.Dose{Value: 500, Unit: "mg"},
+})
+// warnings includes:
+//   {Field: "max_dose", Level: "warning", Message: "PRN frequency without maximum dose limit"}
+//   {Field: "route",    Level: "info",    Message: "route not specified"}
+```
+
 ## FHIR Roundtrip Fidelity
 
 A key invariant of this library:
@@ -210,9 +284,15 @@ open-pharma-dosing/
 │   ├── dosing.go                   # Types, constants, embedded registry
 │   ├── parse.go                    # Parser
 │   ├── fhir.go                     # FHIR R4 converter
+│   ├── text.go                     # Human-readable text generation
+│   ├── schedule.go                 # Concrete schedule generation
+│   ├── validate.go                 # Clinical validation
 │   ├── dosing_test.go
 │   ├── parse_test.go
-│   └── fhir_test.go
+│   ├── fhir_test.go
+│   ├── text_test.go
+│   ├── schedule_test.go
+│   └── validate_test.go
 ├── dart/                           # Dart/Flutter port (planned)
 ├── python/                         # Python port (planned)
 └── docs/                           # Documentation (planned)
@@ -240,7 +320,7 @@ cd go && go test -v -run TestFhirRoundtripAllCodes  # FHIR roundtrip invariant
 ## Roadmap
 
 - [x] **Phase 1:** Core Go library — types, registry, parser, FHIR converter
-- [ ] **Phase 2:** Text generation, schedule generator, validation
+- [x] **Phase 2:** Text generation, schedule generator, validation
 - [ ] **Phase 3:** Dart and Python ports
 - [ ] **Phase 4:** Locale support (en-GB, en-US, fr, es, sw, ha, yo), ParseInstruction
 - [ ] **Phase 5:** Complex regimens (tapering, split-dose, cyclical), EPMA integration
